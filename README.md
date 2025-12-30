@@ -5,12 +5,6 @@ Bu proje, spor yapan bireylerin hareketlerini sadece tanımakla kalmayıp, harek
 
 ---
 
-##  Yazarlar
-- Mehmet Eren Reyhanlıoğlu (220202054)  
-- Yusuf Samet Karakurt (220202021)
-
----
-
 ##  Proje Özeti
 Tek başına spor yapan bireyler genellikle profesyonel geri bildirimden yoksundur. Bu durum yanlış egzersiz formu, performans düşüşü ve sakatlanma riskini artırır.
 
