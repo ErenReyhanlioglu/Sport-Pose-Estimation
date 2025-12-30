@@ -1,0 +1,65 @@
+data:
+  dataset_path: "/content/drive/MyDrive/sport_pose_estimation/data/mm-fit/processed_multimodal"
+  output_path: "/content/drive/MyDrive/sport_pose_estimation/outputs/"
+
+model:
+  pose_input_size: 61
+  sensor_input_size: 10
+  hidden_size: 128
+  num_classes: 10
+  seq_len: 90
+
+# --- ORTAK EĞİTİM AYARLARI (Tüm Modeller İçin Geçerli) ---
+training:
+  epochs: 100
+  batch_size: 256
+  learning_rate: 0.001
+  weight_decay: 0.001
+  random_state: 42
+  
+  early_stopping:
+    enable: true
+    patience: 12
+
+# --- MODA ÖZEL AYARLAR ---
+classifier:
+  label_smoothing: 0.0
+
+autoencoder:
+  embedding_dim: 32
+
+multitask:
+  label_smoothing: 0.2
+  gradient_noise: 0.1
+  loss_weights:
+    classifier: 1.0
+    reconstruction: 0.5
+  uncertainty_weighting:
+    enable: true
+
+ablation:
+  # DENEY 1: Fusion Stratejisi
+  # Seçenekler: 'concat' (Vanilla) | 'attention'
+  fusion_type: 'concat'
+
+  # DENEY 2: Temporal Modeling
+  # Seçenekler: 'gru' (Vanilla) | 'lstm'  
+  rnn_type: 'gru'
+
+  # DENEY 3: Reconstruction Derinliği
+  # Seçenekler: 'simple' (Vanilla) | 'deep'
+  decoder_type: 'deep'
+
+evaluation:
+  class_labels: {
+      "squats": 0, 
+      "lunges": 1, 
+      "bicep_curls": 2, 
+      "situps": 3, 
+      "pushups": 4,
+      "tricep_extensions": 5, 
+      "dumbbell_rows": 6, 
+      "jumping_jacks": 7,
+      "dumbbell_shoulder_press": 8, 
+      "lateral_shoulder_raises": 9
+  }
